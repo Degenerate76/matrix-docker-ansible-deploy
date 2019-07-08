@@ -6,9 +6,15 @@
 	"disable_guests": {{ matrix_riot_web_disable_guests|to_json }},
 	"brand": "Riot",
 	"branding": {
-		"welcomeBackgroundUrl": {{ matrix_riot_web_welcome_background_url|string|to_json }},
-		"authHeaderLogoUrl": {{ matrix_riot_web_auth_header_logo_url|string|to_json }},
-		"authFooterLinks": {{ matrix_riot_web_auth_footer_links|string|to_json }}
+		{% if matrix_riot_web_welcome_background_url is not none %}
+			"welcomeBackgroundUrl": {{ matrix_riot_web_welcome_background_url|string|to_json }},
+		{% endif %}
+		{% if matrix_riot_web_auth_header_logo_url is not none %}
+			"authHeaderLogoUrl": {{ matrix_riot_web_auth_header_logo_url|string|to_json }},
+		{% endif %}
+		{% if matrix_riot_web_auth_footer_links is not none %}
+			"authFooterLinks": {{ matrix_riot_web_auth_footer_links|string|to_json }}
+		{% endif %}
 	},
 	"integrations_ui_url": {{ matrix_riot_web_integrations_ui_url|string|to_json }},
 	"integrations_rest_url": {{ matrix_riot_web_integrations_rest_url|string|to_json }},
